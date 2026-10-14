@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Div List</title>
+
+    <style>
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            background-color: red;
+        }
+
+        .flex-container > div {
+            background-color: #f1f1f1;
+            margin: 10px;
+            padding: 20px;
+            font-size: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .flex-container {
+                flex-direction: column;
+                background-color: green;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Sasi Kiran Kodali builds list with divs</h2>
+
+    <div class="flex-container" id="target">
+        <div class="divlist">row item 1</div>
+        <div class="divlist">row item 2</div>
+        <div class="divlist">row item 3</div>
+    </div>
+
+    <p>Enter an item and click Add end to add it to the list.</p>
+
+    <input type="text" id="itemInput" placeholder="Enter an item">
+
+    <button onclick="makeNewDiv()">Add end</button>
+
+    <script>
+        function makeNewDiv() {
+            let element = document.createElement("div");
+
+            let value = document.getElementById("itemInput").value;
+
+            element.innerHTML = value;
+            element.className = "divlist";
+
+            let container = document.getElementById("target");
+            container.appendChild(element);
+
+            document.getElementById("itemInput").value = "";
+        }
+    </script>
+
+</body>
+</html>
