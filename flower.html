@@ -80,9 +80,6 @@
         <div><img id="img35" src="images/bush.svg" alt="Bush" width="90" onclick="check(35)"></div>
     </div>
 
-</body>
-</html>
-
 
 <script>
     let ids = [];
@@ -93,20 +90,38 @@
 
     let score = 0;
     let locationsVisited = 0;
-    let lastLocation = 0;
+    let lastLocation = 0;    
+    let positions = [];
 
-    let poisonLocation = 19;
-    let roseLocation = 14;
-    let lilyLocations = [3, 25];
-    let daisyLocations = [2, 5, 11, 20, 21];
+    for (let i = 0; i < 36; i++) {
+        positions.push(i);
+    }
+    for (let i = positions.length - 1; i > 0; i--) {
+        let randomIndex = Math.floor(Math.random() * (i + 1));
+
+        let temp = positions[i];
+        positions[i] = positions[randomIndex];
+        positions[randomIndex] = temp;
+    }
+
+    let poisonLocation = positions[0];
+    let roseLocation = positions[1];
+    let lilyLocations = [positions[2], positions[3]];
+    let daisyLocations = positions.slice(4, 9);
+
 
     let gameOver = false;
+    let visitedPositions = [];
+
 
     
 function check(position) {
-    if (gameOver) {
-        return;
+    if (gameOver || visitedPositions.includes(position)) {
+    return;
     }
+
+visitedPositions.push(position);
+
 
     let image = document.getElementById(ids[position]);
 
@@ -131,7 +146,20 @@ function check(position) {
     image.onclick = null;
 
     locationsVisited++;
-    lastLocation = position;
+    lastLocation = position;    
+    
+    if (!gameOver) {
+        moveRose();
+
+        if (visitedPositions.includes(roseLocation)) {
+            gameOver = true;
+
+            document.getElementById("help").innerHTML =
+                "Game Over! The rose landed on you.";
+        }
+    }
+
+
 
     document.getElementById("locations").innerHTML =
         "Number of locations checked is " + locationsVisited;
@@ -139,17 +167,31 @@ function check(position) {
     document.getElementById("score").innerHTML =
         "Score is " + score;
 
-    if (gameOver) {
-        document.getElementById("help").innerHTML =
-            "Game Over! You found poison ivy.";
+    if (position === poisonLocation) {
+    document.getElementById("help").innerHTML =
+        "Game Over! You found poison ivy.";
     }
-}
+}   
+    
+    function moveRose() {
+        let row = Math.floor(roseLocation / 6);
+        let col = roseLocation % 6;
+
+        let moves = [];
+
+        if (row > 0) moves.push(roseLocation - 6);
+        if (row < 5) moves.push(roseLocation + 6);
+        if (col > 0) moves.push(roseLocation - 1);
+        if (col < 5) moves.push(roseLocation + 1);
+
+        let randomIndex = Math.floor(Math.random() * moves.length);
+        roseLocation = moves[randomIndex];
+    }
+
     
 function help() {
     let row = Math.floor(lastLocation / 6);
     let col = lastLocation % 6;
-
-    // Check four neighbors for daisies (with wraparound)
     let neighbors = [
         row * 6 + (col + 1) % 6,
         row * 6 + (col + 5) % 6,
@@ -164,8 +206,6 @@ function help() {
             result = "cold";
         }
     }
-
-    // Check 3 by 3 area for rose and poison ivy
     if (result !== "cold") {
         for (let r = row - 1; r <= row + 1; r++) {
             for (let c = col - 1; c <= col + 1; c++) {
@@ -197,4 +237,6 @@ function help() {
     document.getElementById("help").innerHTML = result;
 }
 </script>
+</body>
+</html>
 

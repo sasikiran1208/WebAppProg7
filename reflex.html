@@ -30,40 +30,61 @@
         Halt
     </button>
 
-    <script>
-        let haltTime = undefined;
+    
+<script>
+    let haltTime = undefined;
+    let startTime = undefined;
+    let totalTime = 0;
+    let running = false;
+    let timers = [];
 
-        function recordTime() {
+    function recordTime() {
+        if (running) {
             haltTime = Date.now();
             console.log(haltTime);
-        }        
-    
-    function beginTime() {
-    haltTime = undefined;
-
-    document.getElementById("target").innerHTML = "Your time";
-
-    for (let i = 0; i <= 5; i++) {
-        setTimeout(function() {
-            document.getElementById("counter").innerHTML = i;
-        }, (5 - i) * 1000);
+        }
     }
 
-    setTimeout(function() {
-        if (haltTime === undefined) {
-            document.getElementById("target").innerHTML =
-                "Not soon enough";
+    function beginTime() {
+        for (let timer of timers) {
+            clearTimeout(timer);
         }
-        else {
-            let targetTime = Date.now();
-            let difference = targetTime - haltTime;
+        timers = [];
 
-            document.getElementById("target").innerHTML =
-                "Time was " + difference + " milliseconds";
+        haltTime = undefined;
+        running = true;
+
+        let startCount = Math.floor(Math.random() * 9) + 2;
+        totalTime = startCount * 1000;
+        startTime = Date.now();
+        document.getElementById("target").innerHTML = "Your time";
+        document.getElementById("counter").innerHTML = startCount;
+        for (let i = 0; i <= startCount; i++) {
+            let timer = setTimeout(function() {
+                document.getElementById("counter").innerHTML = i;
+            }, (startCount - i) * 1000);
+
+            timers.push(timer);
         }
-    }, 5000);
-}
-        </script>
+        let resultTimer = setTimeout(function() {
+            running = false;
+
+            if (haltTime === undefined) {
+                document.getElementById("target").innerHTML =
+                    "Not soon enough";
+            }
+            else {
+                let targetTime = startTime + totalTime;
+                let difference = targetTime - haltTime;
+
+                document.getElementById("target").innerHTML =
+                    "Time was " + difference + " milliseconds";
+            }
+        }, totalTime);
+
+        timers.push(resultTimer);
+    }
+    </script>
 
 </body>
 </html>
