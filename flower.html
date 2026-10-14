@@ -1,79 +1,200 @@
+
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8">
     <title>Flower Finder</title>
-  </head>
-  <body>
+
+    <style>
+        .game-row {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
     <h1>Sasi Kiran Kodali finds avians</h1>
 
-    <p>
-      Click on the locations to find the flowers, watch out for the poison ivy
-    </p>
+    <p>Click on the locations to find the flowers, watch out for the poison ivy</p>
 
     <p id="locations">Number of locations checked is zero.</p>
-
     <p id="score">Score is zero.</p>
-
-    <p>Click for help.</p>
-
+    <p onclick="help()" style="cursor: pointer; color: blue;">
+    Click for help.
+    </p>
     <p id="help">Help report</p>
 
     <div class="game-row">
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
+        <div><img id="img0" src="images/bush.svg" alt="Bush" width="90" onclick="check(0)"></div>
+        <div><img id="img1" src="images/bush.svg" alt="Bush" width="90" onclick="check(1)"></div>
+        <div><img id="img2" src="images/bush.svg" alt="Bush" width="90" onclick="check(2)"></div>
+        <div><img id="img3" src="images/bush.svg" alt="Bush" width="90" onclick="check(3)"></div>
+        <div><img id="img4" src="images/bush.svg" alt="Bush" width="90" onclick="check(4)"></div>
+        <div><img id="img5" src="images/bush.svg" alt="Bush" width="90" onclick="check(5)"></div>
     </div>
+
     <div class="game-row">
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
+        <div><img id="img6" src="images/bush.svg" alt="Bush" width="90" onclick="check(6)"></div>
+        <div><img id="img7" src="images/bush.svg" alt="Bush" width="90" onclick="check(7)"></div>
+        <div><img id="img8" src="images/bush.svg" alt="Bush" width="90" onclick="check(8)"></div>
+        <div><img id="img9" src="images/bush.svg" alt="Bush" width="90" onclick="check(9)"></div>
+        <div><img id="img10" src="images/bush.svg" alt="Bush" width="90" onclick="check(10)"></div>
+        <div><img id="img11" src="images/bush.svg" alt="Bush" width="90" onclick="check(11)"></div>
     </div>
+
     <div class="game-row">
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
+        <div><img id="img12" src="images/bush.svg" alt="Bush" width="90" onclick="check(12)"></div>
+        <div><img id="img13" src="images/bush.svg" alt="Bush" width="90" onclick="check(13)"></div>
+        <div><img id="img14" src="images/bush.svg" alt="Bush" width="90" onclick="check(14)"></div>
+        <div><img id="img15" src="images/bush.svg" alt="Bush" width="90" onclick="check(15)"></div>
+        <div><img id="img16" src="images/bush.svg" alt="Bush" width="90" onclick="check(16)"></div>
+        <div><img id="img17" src="images/bush.svg" alt="Bush" width="90" onclick="check(17)"></div>
     </div>
+
     <div class="game-row">
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
+        <div><img id="img18" src="images/bush.svg" alt="Bush" width="90" onclick="check(18)"></div>
+        <div><img id="img19" src="images/bush.svg" alt="Bush" width="90" onclick="check(19)"></div>
+        <div><img id="img20" src="images/bush.svg" alt="Bush" width="90" onclick="check(20)"></div>
+        <div><img id="img21" src="images/bush.svg" alt="Bush" width="90" onclick="check(21)"></div>
+        <div><img id="img22" src="images/bush.svg" alt="Bush" width="90" onclick="check(22)"></div>
+        <div><img id="img23" src="images/bush.svg" alt="Bush" width="90" onclick="check(23)"></div>
     </div>
+
     <div class="game-row">
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
+        <div><img id="img24" src="images/bush.svg" alt="Bush" width="90" onclick="check(24)"></div>
+        <div><img id="img25" src="images/bush.svg" alt="Bush" width="90" onclick="check(25)"></div>
+        <div><img id="img26" src="images/bush.svg" alt="Bush" width="90" onclick="check(26)"></div>
+        <div><img id="img27" src="images/bush.svg" alt="Bush" width="90" onclick="check(27)"></div>
+        <div><img id="img28" src="images/bush.svg" alt="Bush" width="90" onclick="check(28)"></div>
+        <div><img id="img29" src="images/bush.svg" alt="Bush" width="90" onclick="check(29)"></div>
     </div>
+
     <div class="game-row">
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
-      <div><img src="images/bush.svg" alt="Bush" width="90" /></div>
+        <div><img id="img30" src="images/bush.svg" alt="Bush" width="90" onclick="check(30)"></div>
+        <div><img id="img31" src="images/bush.svg" alt="Bush" width="90" onclick="check(31)"></div>
+        <div><img id="img32" src="images/bush.svg" alt="Bush" width="90" onclick="check(32)"></div>
+        <div><img id="img33" src="images/bush.svg" alt="Bush" width="90" onclick="check(33)"></div>
+        <div><img id="img34" src="images/bush.svg" alt="Bush" width="90" onclick="check(34)"></div>
+        <div><img id="img35" src="images/bush.svg" alt="Bush" width="90" onclick="check(35)"></div>
     </div>
-  </body>
+
+</body>
 </html>
 
-<style>
-  .game-row {
-    display: flex;
-    gap: 5px;
-    margin-bottom: 5px;
-  }
-</style>
+
+<script>
+    let ids = [];
+
+    for (let i = 0; i < 36; i++) {
+        ids.push("img" + i);
+    }
+
+    let score = 0;
+    let locationsVisited = 0;
+    let lastLocation = 0;
+
+    let poisonLocation = 19;
+    let roseLocation = 14;
+    let lilyLocations = [3, 25];
+    let daisyLocations = [2, 5, 11, 20, 21];
+
+    let gameOver = false;
+
+    
+function check(position) {
+    if (gameOver) {
+        return;
+    }
+
+    let image = document.getElementById(ids[position]);
+
+    if (position === poisonLocation) {
+        image.src = "images/poison-ivy.svg";
+        score = score - 4;
+        gameOver = true;
+    }
+    else if (position === roseLocation) {
+        image.src = "images/rose.svg";
+        score = score + 4;
+    }
+    else if (lilyLocations.includes(position)) {
+        image.src = "images/lily.svg";
+        score = score + 2;
+    }
+    else if (daisyLocations.includes(position)) {
+        image.src = "images/daisy.svg";
+        score = score + 1;
+    }
+
+    image.onclick = null;
+
+    locationsVisited++;
+    lastLocation = position;
+
+    document.getElementById("locations").innerHTML =
+        "Number of locations checked is " + locationsVisited;
+
+    document.getElementById("score").innerHTML =
+        "Score is " + score;
+
+    if (gameOver) {
+        document.getElementById("help").innerHTML =
+            "Game Over! You found poison ivy.";
+    }
+}
+    
+function help() {
+    let row = Math.floor(lastLocation / 6);
+    let col = lastLocation % 6;
+
+    // Check four neighbors for daisies (with wraparound)
+    let neighbors = [
+        row * 6 + (col + 1) % 6,
+        row * 6 + (col + 5) % 6,
+        ((row + 1) % 6) * 6 + col,
+        ((row + 5) % 6) * 6 + col
+    ];
+
+    let result = "warm";
+
+    for (let i = 0; i < neighbors.length; i++) {
+        if (daisyLocations.includes(neighbors[i])) {
+            result = "cold";
+        }
+    }
+
+    // Check 3 by 3 area for rose and poison ivy
+    if (result !== "cold") {
+        for (let r = row - 1; r <= row + 1; r++) {
+            for (let c = col - 1; c <= col + 1; c++) {
+                if (r >= 0 && r < 6 && c >= 0 && c < 6) {
+                    let position = r * 6 + c;
+
+                    if (position === roseLocation) {
+                        result = "hot";
+                    }
+                }
+            }
+        }
+    }
+
+    if (result === "warm") {
+        for (let r = row - 1; r <= row + 1; r++) {
+            for (let c = col - 1; c <= col + 1; c++) {
+                if (r >= 0 && r < 6 && c >= 0 && c < 6) {
+                    let position = r * 6 + c;
+
+                    if (position === poisonLocation) {
+                        result = "watch out";
+                    }
+                }
+            }
+        }
+    }
+
+    document.getElementById("help").innerHTML = result;
+}
+</script>
+
