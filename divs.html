@@ -41,7 +41,11 @@
 
     <input type="text" id="itemInput" placeholder="Enter an item">
 
+   
     <button onclick="makeNewDiv()">Add end</button>
+    <button onclick="addFront()">Add front</button>
+    <button onclick="removeEveryOther()">Remove</button>
+
 
     <script>
         function makeNewDiv() {
@@ -56,6 +60,34 @@
             container.appendChild(element);
 
             document.getElementById("itemInput").value = "";
+        }
+
+        
+    function addFront() {
+        let element = document.createElement("div");
+
+        let value = document.getElementById("itemInput").value;
+
+        element.innerHTML = value;
+        element.className = "divlist";
+
+        let container = document.getElementById("target");
+
+        container.insertBefore(element, container.firstChild);
+
+        document.getElementById("itemInput").value = "";
+    }
+    
+        function removeEveryOther() {
+            let divListItems = document.getElementsByClassName("divlist");
+
+            let length = divListItems.length;
+
+            for (let i = length - 1; i >= 0; i--) {
+                if (i % 2 === 0) {
+                    divListItems[i].remove();
+                }
+            }
         }
     </script>
 
