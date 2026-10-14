@@ -36,12 +36,34 @@
         function recordTime() {
             haltTime = Date.now();
             console.log(haltTime);
-        }
+        }        
+    
+    function beginTime() {
+    haltTime = undefined;
 
-        function beginTime() {
-            // We will implement the countdown in Part 6.
+    document.getElementById("target").innerHTML = "Your time";
+
+    for (let i = 0; i <= 5; i++) {
+        setTimeout(function() {
+            document.getElementById("counter").innerHTML = i;
+        }, (5 - i) * 1000);
+    }
+
+    setTimeout(function() {
+        if (haltTime === undefined) {
+            document.getElementById("target").innerHTML =
+                "Not soon enough";
         }
-    </script>
+        else {
+            let targetTime = Date.now();
+            let difference = targetTime - haltTime;
+
+            document.getElementById("target").innerHTML =
+                "Time was " + difference + " milliseconds";
+        }
+    }, 5000);
+}
+        </script>
 
 </body>
 </html>
